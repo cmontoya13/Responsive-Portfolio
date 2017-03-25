@@ -1,0 +1,280 @@
+<!doctype html>
+<head>
+<title>Car Buying Calculator</title>
+<meta name="viewport" content="width=device-width">
+<style>
+body {
+	font-family: arial, helvetica, sans-serif;
+}
+a {text-decoration:none;
+}
+h1, h2, h3, h4, h5, h6, p {padding:0px;
+	margin:0px;
+}
+h1 {margin-bottom:0px;
+	margin-left:8px;
+}
+section {width:350px;
+	display:inline-block;
+	vertical-align:top;
+	margin:10px;
+}
+section p {font-size:11pt;}
+h2 {margin-left:0px;
+}
+article {margin:10px 0px;
+	background-color:#ddd;
+}
+article h3 {background-color:#555;
+	color:#fff;
+	padding:5px;
+	line-height:1.1em;
+	text-shadow:1px 2px 1px #333;
+}
+article div {width:350px;
+	vertical-align:top;
+	margin:2px;
+}
+article div p {padding:3px;	
+}
+article div:last-child {padding-bottom:10px;
+}
+span {color:red;
+	font-weight:bold;
+}
+.legal {line-height:.8em;	
+}
+.colCount3 {column-count:3;
+	-moz-column-count:3;
+	-webkit-column-count:3;
+}
+</style>
+</head>
+
+<body>
+
+<h1>CAR BUYING CALCULATOR</h1>
+
+	<section>	
+		<h2>Calculate Monthly Payment</h2>
+		<p>Use this calculator to determine your monthly car payment before and while haggling with the dealer. Enter the first 5 fields for a rough estimate or complete all fields for the exact monthly payment.</p>
+		<form action="" method="get" onsubmit="payment(); return false;" onreset="resetAll();">
+			<article>
+				<h3>Purchase Details: <small><span>(REQUIRED)</span><br>
+					minimum needed for rough estimate</small></h3>
+				<div>
+					<p>Cost:<br>
+	    			<input name="cost" type="number" id="cost" placeholder="40000 - no symbols" size="30" maxlength="20" required></p>
+				</div>
+				<div>
+					<p>Down Payment: <small>(not including any Cash Back offer)</small><br>
+	    			<input name="down" type="number" id="down" placeholder="6500 - no symbols" size="30" maxlength="20" required></p>
+				</div>		
+				<div>
+					<p>Years:<br>
+	    			<input name="years" type="number" id="years" placeholder="5 is most common" size="30" maxlength="20" required></p>
+				</div>		
+				<div>
+					<p>Interest Rate:<br>
+	    			<input name="rate" type="number" id="rate" step="0.01" placeholder="2.9, 8.25, etc." size="30" maxlength="20" required></p>
+				</div>
+			</article>
+			<article>
+				<h3>Purchase Details: <small>(optional)<br>
+					complete for exact estimate</small></h3>
+				<div>
+					<p>Sales Tax Rate: <small><a href="http://www.salestaxstates.com/" target="_blank">FIND</a></small><br>
+	    			<input name="tax" type="number" id="tax" step="0.01" placeholder="6.5, 7.75, etc." size="30" maxlength="20"></p>
+				</div>
+				<div>
+					<p>Licensing: <small>(new car only)</small><br>
+	    			<input name="license" type="number" id="license" step="0.01" placeholder="1200 - no symbols" size="30" maxlength="20"></p>
+				</div>
+				<div>
+					<p>Warranty:<br>
+	    			<input name="warranty" type="number" id="warranty" step="0.01" placeholder="1100 - no symbols" size="30" maxlength="20"></p>
+				</div>
+				<div>
+					<p>Miscellaneous: <small>(options, car mats, etc.)</small><br>
+	    			<input name="misc" type="number" id="misc" step="0.01" placeholder="1500 - no symbols" size="30" maxlength="20"></p>
+				</div>								
+			</article>
+			<div>
+				<p>
+				<input type="submit" value="Submit">
+      			<input type="reset" value="Reset All"></p>
+			</div>
+			<hr>
+			<div>
+				<h3>Monthly payment:<br>
+				<span id="payment"></span></h3>
+				<h3>Total interest paid:<br>
+				<span id="interest"></span></h3>
+			</div>
+		</form>
+	</section>
+
+	<section>	
+		<h2>Cash Back vs. Low Financing</h2>
+		<p>Use this calculator to determine how cash back offers compare to special financing offers. It adds the total principle and interest of both and compares them.<br>
+			<small><em>Example: $2,000 Cash Back or 1.9% Financing.</em></small></p>
+		<form action="" method="get" onsubmit="payment(); return false;" onreset="resetOffer();">
+			<article>
+				<h3>Offer Details: <small>(optional)<br>
+					for incentive comparison</small></h3>
+				<div>
+					<p>Cash Back Offer:<br>
+	    			<input name="cashOffer" type="number" id="cashOffer" placeholder="2000 - no symbols" size="30" maxlength="20"></p>
+				</div>
+				<div>
+					<p>Interest Rate Offer:<br>
+	    			<input name="rateOffer" type="number" id="rateOffer" step="0.01" placeholder="1.9, 2.25, etc." size="30" maxlength="20"></p>
+	    		</div>
+			</article>
+			</div>
+				<p>
+				<input type="submit" value="Submit">
+      			<input type="reset" value="Reset Offer"></p>
+			</div>
+			<hr>
+			<div>
+				<p id="offer"></p>
+			</div>
+		</form>
+	</section>
+	<h2>Auto Websites</h2>
+	<p>Use these links to find vehicles, specials, incentives, recalls and more.</p>
+	<article class="colCount3">
+		<a href="http://www.acura.com/" target="_blank">Acura</a><br>
+		<a href="https://www.alfaromeousa.com/" target="_blank">Alfa Romeo</a><br>
+		<a href="http://www.astonmartin.com/" target="_blank">Aston Martin</a><br>
+		<a href="https://www.audiusa.com/" target="_blank">Audi</a><br>
+		<a href="https://www.bentleymotors.com/" target="_blank">Bentley</a><br>
+		<a href="http://www.bmw.com/" target="_blank">BMW</a><br>
+		<a href="http://www.bugatti.com/" target="_blank">Bugati</a><br>
+		<a href="http://www.buick.com/" target="_blank">Buick</a><br>
+		<a href="http://www.cadillac.com/" target="_blank">Cadillac</a><br>
+		<a href="http://www.chevrolet.com/" target="_blank">Chevrolet</a><br>
+		<a href="http://www.chrysler.com/" target="_blank">Chrysler</a><br>
+		<a href="http://www.citroen.com/" target="_blank">Citroen</a><br>
+		<a href="http://www.dodge.com/" target="_blank">Dodge</a><br>
+		<a href="http://www.ferrari.com/" target="_blank">Ferrari</a><br>
+		<a href="https://www.fiat.com/" target="_blank">Fiat</a><br>
+		<a href="http://www.ford.com/" target="_blank">Ford</a><br>
+		<a href="http://global.geely.com/" target="_blank">Geely</a><br>
+		<a href="http://www.gmc.com/" target="_blank">GMC</a><br>
+		<a href="http://www.honda.com/" target="_blank">Honda</a><br>
+		<a href="https://www.hyundaiusa.com/" target="_blank">Hyundai</a><br>
+		<a href="http://www.infiniti.com/" target="_blank">Infiniti</a><br>
+		<a href="https://www.jaguar.com/" target="_blank">Jaguar</a><br>
+		<a href="http://www.jeep.com/" target="_blank">Jeep</a><br>
+		<a href="http://www.kia.com/" target="_blank">Kia</a><br>
+		<a href="http://koenigsegg.com/" target="_blank">Koenigsegg</a><br>
+		<a href="https://www.lamborghini.com/" target="_blank">Lamborghini</a><br>
+		<a href="http://www.landrover.com/" target="_blank">Land Rover</a><br>
+		<a href="http://www.lexus.com/" target="_blank">Lexus</a><br>
+		<a href="http://www.maserati.com/" target="_blank">Maserati</a><br>
+		<a href="http://www.mazda.com/" target="_blank">Mazda</a><br>
+		<a href="http://cars.mclaren.com/" target="_blank">McLaren</a><br>
+		<a href="http://www.mercedes-amg.com/" target="_blank">Mercedes-Benz</a><br>
+		<a href="http://www.mini.com/" target="_blank">Mini</a><br>
+		<a href="http://www.mitsubishicars.com/" target="_blank">Mitsubishi</a><br>
+		<a href="https://www.nissanusa.com/" target="_blank">Nissan</a><br>
+		<a href="http://www.pagani.com/" target="_blank">Pagani</a><br>
+		<a href="http://www.peugeot.com/" target="_blank">Peugeot</a><br>
+		<a href="http://www.porsche.com/" target="_blank">Porsche</a><br>
+		<a href="http://www.ramtrucks.com/" target="_blank">Ram</a><br>
+		<a href="https://www.renault.co.uk/" target="_blank">Renault</a><br>
+		<a href="https://www.rolls-roycemotorcars.com/" target="_blank">Rolls Royce</a><br>
+		<a href="http://www.subaru.com/" target="_blank">Subaru</a><br>
+		<a href="http://www.suzuki.com/" target="_blank">Suzuki</a><br>
+		<a href="http://www.tatamotors.com/" target="_blank">Tata</a><br>
+		<a href="https://www.tesla.com/" target="_blank">Tesla</a><br>
+		<a href="http://www.toyota.com/" target="_blank">Toyota</a><br>
+		<a href="http://www.vw.com/" target="_blank">Volkswagen</a><br>
+		<a href="http://www.volvocars.com/" target="_blank">Volvo</a>
+	</article>
+
+	<hr>
+	<p class="legal"><small>* This calculator tool is only meant for a comparison to dealership results. We make no guarantees of accuracy and assume no liability for incorrect results.</small></p>	
+
+<script>
+var pResult = document.getElementById('payment'),
+iResult = document.getElementById('interest'),
+oResult = document.getElementById('offer');
+
+function payment() {
+	/*Purchase Details Variables*/
+	var c = cost.value, //cost
+	d = down.value, //down payment
+	y = years.value, //loan years
+	r = rate.value/12/100, //loan rate converted to months and decimal
+	t = tax.value/100, //yearly tax rate converted to decimal
+	l = Number(license.value), //new car licensing fee
+	w = Number(warranty.value), //warranty cost
+	m = Number(misc.value), //yearly tax rate converted to decimal
+	p = c-d, //cost minus down payment
+	months = y*12, //years converted to months
+	taxes = p*t, //principle multiplied times sales tax
+	a = p+taxes+l+w+m, //principle + taxes
+	numerator = r*Math.pow(1+r,months), //numerator of compound interest formula
+ 	denominator = Math.pow(1+r,months)-1, //denominator of compound interest formula
+ 	formula = numerator/denominator, //combine compound interest formula 	
+ 	payment = a*formula, //apply compound interest formula to principle
+ 	totalInt = payment*months-p-taxes-l-w-m, //total interest paid
+
+ 	/*Special Interest Rate Variables*/
+ 	ro = Number(rateOffer.value)/12/100, //special interest rate offer converted to months and decimal
+ 	numerator2 = ro*Math.pow(1+ro,months), //numerator of special compound interest formula
+ 	denominator2 = Math.pow(1+ro,months)-1, //denominator of special compound interest formula
+ 	formula2 = numerator2/denominator2, //combine special compound interest formula 
+ 	payment2 = a*formula2, //apply special compound interest formula to principle
+ 	specInt = payment2*months-p-taxes-l-w-m, //total special interest paid
+ 	intOffer = Math.max(specInt+p).toFixed(2), //add total special interest to principle - toFixed(2) to find 'wash' comparisons
+
+ 	/*Cash Back Variables*/
+ 	co = Number(cashOffer.value), //cash offer amount
+ 	p2 = p-co, //principle minus down payment and cash offer
+ 	taxes2 = p2*t, //new principle times sales tax rate
+ 	b = p2+taxes2+l+w+m, //new principle plus taxes, licensing, warranty and misc.
+ 	payment3 = b*formula; //apply compound interest formula to principle
+ 	cashInt = payment3*months-p2-taxes2-l-w-m, //total interest paid
+ 	cashOff = Math.max(cashInt+p2).toFixed(2); //interest plus new principle - toFixed(2) to find 'wash' comparisons
+
+ 	/* Checks that REQUIRED fields are filled out if 'required' attribute removed from 'input' elements
+ 	if (c==="" || d==="" || y==="" || r===0) { //if required fields are not filled out
+ 		alert("Please fill out all fields in the REQUIRED Purchase Details section");
+ 	} */
+ 	// Change to if/else if above REQUIRED conditional is enabled
+ 	if (co !== 0 && ro !== 0) { //if special offer fields are filled out
+ 		pResult.innerHTML="$"+Math.max(payment).toFixed(2); //display monthly payment
+   		iResult.innerHTML="$"+Math.max(totalInt).toFixed(2); //display total interest paid
+   		if (intOffer < cashOff) { //if special interest is less than cash offer
+   			var rateWins = cashOff-intOffer; //subtract special interest from cash offer totals
+   			oResult.innerHTML="<strong>Special Financing</strong> beats Cash Back by $"+Math.max(rateWins).toFixed(2);
+   		}
+   		else if (intOffer > cashOff) { //if special interest is greater than cash offer
+   			var cashWins = intOffer-cashOff; //subtract cash offer from special interest totals
+   			oResult.innerHTML="<strong>Cash Back</strong> beats Special Financing by $"+Math.max(cashWins).toFixed(2);
+   		}
+   		else { //if special interest is equal to cash offer
+   			oResult.innerHTML="The Cash Back and Special Financing offers are an equal wash";
+   		}
+   	}
+   	 //if special offer fields are not filled out
+   	pResult.innerHTML="$"+Math.max(payment).toFixed(2); //display monthly payment
+   	iResult.innerHTML="$"+Math.max(totalInt).toFixed(2); //display total interest paid
+   	oResult.innerHTML="No special offer comparison was entered"; //display no special offer message
+}
+function resetAll() {
+	pResult.innerHTML="";
+	iResult.innerHTML="";
+	oResult.innerHTML="";
+}
+function resetOffer() {
+	oResult.innerHTML="";
+}
+</script>
+
+</body>
+</html>

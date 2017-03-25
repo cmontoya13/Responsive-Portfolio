@@ -1,0 +1,358 @@
+<!doctype html>
+<head>
+<title>Contractor Calculator</title>
+<meta name="viewport" content="width=device-width">
+<style>
+body {font-family:arial,helvetica,sans-serif;
+}
+h1, h2, h3, h4, h5, h6, p {padding:0px;
+	margin:0px;
+}
+h1 {margin-bottom:0px;
+}
+section {width:350px;
+	display:inline-block;
+	vertical-align:top;
+	margin:10px;
+}
+section p {font-size:11pt;}
+h2 {margin-left:0px;
+}
+article div {width:350px;
+	vertical-align:top;
+	margin:2px;
+}
+article {margin:10px 0px;
+}
+.area article {background-color:#ffcece;
+}
+.concrete article {background-color:#ddf;
+}
+.square article {background-color:#dfd;
+}
+h3 {background-color:#555;
+	color:#fff;
+	padding:5px;
+	line-height:1.1em;
+	text-shadow:1px 2px 1px #333;
+}
+.area article h3 {background-color:#b00;
+}
+.concrete article h3 {background-color:#00a;
+}
+.square article h3 {background-color:#070;
+}
+article div p {padding:3px;	
+}
+article div:last-child {padding-bottom:10px;
+}
+span {color:red;
+	font-weight:bold;
+	font-size:16pt;
+}
+.legal {line-height:.8em;	
+}
+</style>
+</head>
+<body>
+
+<h1>CONTRACTOR CALCULATOR</h1>
+
+<section>
+	<h2>Calculate Area</h2>
+	<p>Find the total number of product needed to cover an area. Quickly calculate the number of tiles, flooring, bricks, laminate and more. If only seeking width or height totals, just enter those fields and leave the other blank.</p>
+	<form action="" method="get" class="area" onsubmit="calcArea(); return false;" onreset="preset();">
+		<article>
+		<h3>What's the product?<br>
+			<small>tile, stone, flooring, etc.</small></h3>
+		<div>
+			<p>Product Name:<br>
+	    	<input name="pname" type="text" id="pname" placeholder="tile, stone, flooring, etc." size="30" maxlength="20"></p>
+		</div>
+		</article>
+
+		<article>
+		<h3>Product Dimensions?<br>
+			<small>INCHES - include 1 side &amp; top spacers</small></h3>			
+		<div>
+			<p>Product Length:<br>
+	    	<input name="lngth" type="number" id="lngth" step="0.001" placeholder="INCHES - enter 4.25 for 4&#0188;, etc." size="30" maxlength="20"></p>
+		</div>
+		<div>
+			<p>Product Width:<br>
+	    	<input name="wdth" type="number" id="wdth" step="0.001" placeholder="INCHES - enter 6.5 for 6&#0189;, etc." size="30" maxlength="20"></p>
+		</div>
+		</article>
+
+		<article>
+		<h3>Area of the job?<br>
+			<small>FEET - inch equivalents below *</small></h3>
+		<div>
+			<p>Job Area Length/Height:<br>
+	    	<input name="alength" type="number" id="alength" step="0.001" placeholder="FEET - enter 4.25 for 51 in., etc." size="30" maxlength="20"></p>
+		</div>		
+		<div>
+			<p>Job Area Width:<br>
+	    	<input name="awidth" type="number" id="awidth" step="0.001" placeholder="FEET - enter 6.33 for 76 in., etc." size="30" maxlength="20"></p>
+		</div>
+		</article>
+
+		<article>
+		<h3>Estimated loss?<br>
+			<small>diagonal layouts have more loss</small></h3>	
+		<div>
+			<p>Estimated % of Additional Loss:<br>
+	    	<input name="loss" type="number" id="loss" step="0.1" placeholder="enter 5 for 5%, etc." size="30" maxlength="20"></p>
+		</div>	
+		</article>
+
+		<input type="submit" value="Submit">
+      	<input type="reset" value="Reset">
+	</form>
+
+	<span id="pTotal">&nbsp;</span>
+</section>
+
+<section>
+	<h2>Calculate Cubic Yards</h2>
+	<p>Find the total cubic yards needed for a concrete pour, dirt fill and more. Just enter the area in feet and the desired depth.</p>
+	<form action="" method="get" class="concrete" onsubmit="calcCubic(); return false;" onreset="creset();">
+		<article>
+		<h3>Area of the job?<br>
+			<small>FEET - inch equivalents below *</small></h3>
+		<div>
+			<p>Job Area Length:<br>
+	    	<input name="clength" type="number" id="clength" step="0.001" placeholder="FEET - enter 4.25 for 51 in., etc." size="30" maxlength="20"></p>
+		</div>		
+		<div>
+			<p>Job Area Width:<br>
+	    	<input name="cwidth" type="number" id="cwidth" step="0.001" placeholder="FEET - enter 6.33 for 76 in., etc." size="30" maxlength="20"></p>
+		</div>
+		</article>
+
+		<article>
+		<h3>Depth of the pour?<br>
+			<small>INCHES - usually 3 to 5</small></h3>	
+		<div>
+			<p>Concrete Depth:<br>
+	    	<input name="cdepth" type="number" id="cdepth" step="0.1" placeholder="INCHES - enter 4 for 4 in., etc." size="30" maxlength="20"></p>
+		</div>	
+		</article>
+
+		<input type="submit" value="Submit">
+      	<input type="reset" value="Reset">
+	</form>
+
+	<span id="cTotal">&nbsp;</span>
+</section>
+
+<section>
+	<h2>Find Square</h2>
+	<p>Find the hypotenuse (long side) of a right triangle. This tool can also be used to square a rectangle. Just enter the measurement of two adjoining sides and the result will be the angle length between opposing corners.</p>
+	<form action="" method="get" class="square" onsubmit="calcSq(); return false;" onreset="sqreset();">
+		<article>
+		<h3>Dimensions of project?<br>
+			<small>FEET - inch equivalents below *</small></h3>
+		<div>
+			<p>Side Length:<br>
+	    	<input name="sqlength" type="number" id="sqlength" step="0.001" placeholder="FEET - enter 4.25 for 51 in., etc." size="30" maxlength="20"></p>
+		</div>		
+		<div>
+			<p>Top/Bottom Width:<br>
+	    	<input name="sqwidth" type="number" id="sqwidth" step="0.001" placeholder="FEET - enter 6.33 for 76 in., etc." size="30" maxlength="20"></p>
+		</div>
+		</article>
+
+		<input type="submit" value="Submit">
+      	<input type="reset" value="Reset">
+	</form>
+
+	<span id="sqTotal">&nbsp;</span>
+</section>
+
+<div>
+	<section>
+		<table border="0" width="350px">
+			<th colspan="3"><mark>* INCHES TO FEET</mark><br>
+				<small>&nbsp;&nbsp;&nbsp;WHOLE INCHES TO DECIMAL FEET</small></th>
+			<tr>
+				<td align="right" width="170px">1 inch</td> <td width="10px">=</td> <td width="170px">.08 feet</td>
+			</tr>
+			<tr>
+				<td align="right">2 in.</td> <td>=</td> <td>.17 ft.</td>
+			</tr>
+			<tr>
+				<td align="right">3 in.</td> <td>=</td> <td>.25 ft.</td>
+			</tr>
+			<tr>
+				<td align="right">4 in.</td> <td>=</td> <td>.33 ft.</td>
+			</tr>
+			<tr>
+				<td align="right">5 in.</td> <td>=</td> <td>.42 ft.</td>
+			</tr>
+			<tr>
+				<td align="right">6 in.</td> <td>=</td> <td>.50 ft.</td>
+			</tr>
+			<tr>
+				<td align="right">7 in.</td> <td>=</td> <td>.58 ft.</td>
+			</tr>
+			<tr>
+				<td align="right">8 in.</td> <td>=</td> <td>.67 ft.</td>
+			</tr>
+			<tr>
+				<td align="right">9 in.</td> <td>=</td> <td>.75 ft.</td>
+			</tr>
+			<tr>
+				<td align="right">10 in.</td> <td>=</td> <td>.83 ft.</td>
+			</tr>
+			<tr>
+				<td align="right">11 in.</td> <td>=</td> <td>.92 ft.</td>
+			</tr>
+		</table>
+	</section>
+	<section>
+		<table border="0" width="350px">
+			<th colspan="3"><mark>* FRACTIONAL INCHES</mark><br>
+				<small>&nbsp;&nbsp;&nbsp;FRACTIONAL INCHES TO DECIMAL</small></th>
+			<tr>
+				<td align="right" width="160px">1/8 inch</td> <td width="10px">=</td> <td width="160px">.08 inches</td>
+			</tr>
+			<tr>
+				<td align="right">1/4 in.</td> <td>=</td> <td>.25 in.</td>
+			</tr>
+			<tr>
+				<td align="right">1/3 in.</td> <td>=</td> <td>.33 in.</td>
+			</tr>
+			<tr>
+				<td align="right">3/8 in.</td> <td>=</td> <td>.375 in.</td>
+			</tr>
+			<tr>
+				<td align="right">1/2 in.</td> <td>=</td> <td>.5 in.</td>
+			</tr>
+			<tr>
+				<td align="right">5/8 in.</td> <td>=</td> <td>.625 in.</td>
+			</tr>
+			<tr>
+				<td align="right">2/3 in.</td> <td>=</td> <td>.667 in.</td>
+			</tr>
+			<tr>
+				<td align="right">3/4 in.</td> <td>=</td> <td>.75 in.</td>
+			</tr>
+			<tr>
+				<td align="right">7/8 in.</td> <td>=</td> <td>.875 in.</td>
+			</tr>
+		</table>
+	</section>
+</div>
+<hr>
+<p class="legal"><small>* These calculator tools are only meant for a comparison to your own calculations. We make no guarantees of accuracy and assume no liability for incorrect product orders.</small></p>
+
+<!-- AREA -->		
+<script>
+	var product = document.getElementById('pTotal'),
+	cubic = document.getElementById('cTotal'),
+	square = document.getElementById('sqTotal');
+
+	function calcArea() {
+	/* LENGTH/HEIGHT CALCULATIONS */
+		var n = pname.value, //product name
+		x = Number(lngth.value), //length/height of product
+		y = Number(alength.value*12), //area length converted to inches
+		z = 0; //length/height count
+
+		//column count
+		function calcLength() {
+			for (i=x; i<=y; i+=x) { //count number of product to length/height
+				z++;
+			}
+			var zInches = z*x, //convert product count to inches
+			remainder = y-zInches; //find remainder
+			if (remainder != 0) {			
+				if (remainder < x/2) { //if less than half, add half a piece
+					z+=.5;
+				}
+				else { //if less than half, add a whole piece
+					z++;
+				}
+			}
+		}
+		if (x != 0) { //if a length/height was entered
+			calcLength();	
+		}
+
+	/* WIDTH CALCULATIONS */
+		var a = Number(wdth.value), //width of product
+		w = Number(awidth.value*12), //area width converted to inches
+		c = 0; // width count
+
+		//row count
+		function calcWidth() {
+			for (i=a; i<=w; i+=a) { //count number of product to width
+				c++;
+			}		
+			var cInches = c*a, //convert product count to inches
+			remainder = w-cInches; //find remainder
+			if (remainder != 0) {
+				if (remainder < a/2) { //if less than half, only add half a piece
+					c+=.5;
+				}
+				else { //if more than half, add a whole piece
+					c++;
+				}
+			}
+		}
+		if (a != 0) { //if a width was entered
+			calcWidth();
+		}
+
+	/* FINAL CALCULATIONS */
+		var l = Number(loss.value/100); //percentage of loss
+		if (x==0 && y==0) { //if no length values were entered
+			var lss = Math.floor(c*l), //product loss
+			t = c+lss; //total product plus loss
+			product.innerHTML="You need "+Math.ceil(t)+" "+n;
+		}
+		else if (a==0 && w==0) { //if no width values were entered
+			var lss = Math.floor(z*l), //product loss
+			t = z+lss; //total product plus loss
+			product.innerHTML="You need "+Math.ceil(t)+" "+n;
+		}
+		else {		
+			var p = z*c, //total product needed
+			lss = Math.floor(p*l), //product loss
+			t = p+lss; //total product plus loss
+			product.innerHTML="You need "+Math.ceil(t)+" "+n; //combine rounded up total with product name
+		}
+	}
+
+	function calcCubic() {
+		var cw = cwidth.value, //area width
+		cl = clength.value, //area length
+		cd = cdepth.value/12, //pour depth converted to feet
+		cf = cw*cl*cd, //cubic feet
+		ct = cf/27; //convert to yards
+
+		cubic.innerHTML="You need "+Math.max(ct).toFixed(2)+" yards"; //total yards of concrete needed
+	}
+
+	function calcSq() {
+		var sw = Math.pow(sqwidth.value,2), //side width squared
+		sl = Math.pow(sqlength.value,2), //top/bottom length squared
+		xx = sw+sl, //add result
+		ht = Math.sqrt(xx); //find square root of result
+
+		square.innerHTML="The hypotenuse is "+Math.max(ht).toFixed(2)+" feet"; //total yards of concrete needed
+	}
+
+	function preset() {
+	product.innerHTML="";
+	}
+	function creset() {
+	cubic.innerHTML="";
+	}
+	function sqreset() {
+	square.innerHTML="";
+	}
+</script>
+</body>
+</html>
