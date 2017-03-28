@@ -6,8 +6,11 @@ html, body {
 header {
 	text-align: center;
 	background-color: #fff;
-	max-width: 1200px;
-	min-width: 500px;
+	max-width: 100%;
+	min-width: 320px;
+}
+header div {
+	width: 1100px;
 	margin: 0 auto;
 }
 h1, h2, h3, h4 {
@@ -20,8 +23,7 @@ h1 {
 	background-color: #4aaaa5;
 	text-align: center;
 	display: inline-block;
-	margin-top: 20px;
-	margin-left: -415px;
+	margin: 20px 530px 0 0;
 	border-radius: 20px 20px 0 0;
 	font-size: 1.2em;
 	line-height: 3.2em;
@@ -30,9 +32,8 @@ h1 {
 .whiteTxt {
 	color: #fff;
 }
-nav {
-	float: right;
-	margin: 45px 120px 0 0;
+nav {display: inline-block;
+	margin-top: 45px;
 }
 ul li {
 	display: inline;
@@ -60,7 +61,6 @@ a:active {
 #content {
 	text-align: center;
 	max-width: 960px;
-	min-width: 460px;
 	margin: 0 auto 150px; /*sticky footer bottom margin*/
 }
 section {
@@ -128,7 +128,7 @@ aside h3 {
 footer {
 	background-color: #666;
 	max-width: 1200px;
-	min-width: 500px;
+	min-width: 320px;
 	height: 60px;
 	margin: 0 auto;
 	border-top: solid 4px #4aaaa5;
@@ -202,12 +202,17 @@ textarea {
 
 
 /******* RESPONSIVE DESIGN *******/
-@media screen and (max-width: 980px) {
-	h1 {
-		margin-left: -245px;
+@media screen and (max-width: 1200px) {
+	header div {
+		width: 980px;
 	}
-	nav {
-		margin-right: 80px;
+}
+@media screen and (max-width: 980px) {
+	header div {
+		width: 745px;
+	}
+	h1 {
+		margin-right: 320px;
 	}
 	#content {
 		max-width: 900px;
@@ -238,23 +243,31 @@ textarea {
 /******* TABLET *******/
 @media screen and (max-width: 768px) {
 	header {
-		max-width: 768px;
 		text-align: left;
 	}
+	header div {		
+		max-width: 100%;
+	}
 	h1 {
+		margin-right: 0;
 		margin-left: 20px;
+	}
+	nav {
+		float: right;
+		margin-right: 20px;
 	}
 	#container {
 		max-width: 768px;
+		text-align: center;		
 	}
 	#content {
 		max-width: 768px;
 		text-align: center;
-		padding: 0 20px;
+		padding: 0 60px 0 20px;
 	}
 	section {
 		display: block;		
-		width: 92%;
+		width: 100%;
 	}
 	#mainPic {
 		width: 50%;
@@ -265,7 +278,7 @@ textarea {
 		margin-left: 0px;
 	}
 	aside {
-		width: 92%;
+		width: 100%;
 		text-align: left;
 		margin-top: 0;
 	}
@@ -304,6 +317,10 @@ textarea {
 	header {
 		position: static;
 	}
+	header div {
+		padding: 0;
+		text-align: center;
+	}
 	h1 {
 		display: block;
 		margin-top: 0;
@@ -317,7 +334,7 @@ textarea {
 		margin: 0;
 	}
 	ul li {
-		padding: 45px;
+		padding: 25px;
 		line-height: 3.0em;
 	}
 	#content {
