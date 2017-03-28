@@ -87,8 +87,7 @@ hr {
 #mainPic {
 	float:left;
 	padding: 5px 10px 10px 0;
-	width: 160px;
-	height: 200px;
+	width: 45%;
 }
 p {
 	line-height: 1.5em;
@@ -258,8 +257,7 @@ textarea {
 		width: 92%;
 	}
 	#mainPic {
-		width: 320px;
-		height: 400px;
+		width: 50%;
 	}
 	#rightCol {
 		padding-bottom: 20px;
